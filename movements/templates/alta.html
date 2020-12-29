@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block title%} Nuevo Registro {%endblock%}
+
+{%block content%}
+<a href="/">Volver a Resumen</a>
+<h1>Nuevo Ingreso</h1>
+Introduzca los datos del nuevo ingreso:
+<br/>
+<form action="creaalta", method="POST">
+    {{ form.hidden_tag() }}
+    <div class="field">
+        {{ form.fecha.label }}
+        {{ form.fecha (type=date)}}
+    </div>
+    <div class="field">
+        {{ form.concepto.label }}
+        {{ form.concepto (placeholder='De dónde viene ese dinerito')}}
+        {% if form.concepto.errors %}
+            {% for msg in form.concepto.errors %}
+            <p class='err-msg'>
+                {{ msg }}
+            </p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="field">
+        {{ form.cantidad.label }}
+        {{ form.cantidad (placeholder='introduce importe')}}
+    </div>
+    <div class="field">
+        {{ form.submit }}
+    </div>
+</form> 
+
+<br/>
+
+{% endblock%}

@@ -1,8 +1,45 @@
 {%extends 'base.html'%}
 
-{%block title%} lista {%endblock%}
+{%block title%} Resumen mensual {%endblock%}
 
-{%block content%} 
-            <h1>Lista de movimientos</h1>
-            <p>Aquí va mi lista de movimientos</p>
+{%block content%}
+
+
+    <h1>Ingresos mensuales <a href="http://www.google.es" target="_blank" rel="noreferrer nopener">Por aquí vas a Google (con rel quitamos agujero de seguridad)</a></h1>
+    <form action="creaalta">
+        <input type="submit", value="Nuevo Registro por un input en form">
+        <br>
+        <button>Por aquí también creas un nuevo registro pero con un botón en el form</button>
+        <br>
+        <br/>
+        <a href="http://www.google.es" target="_blank">Por aquí también vas a Google pero no te abre una nueva ventana</a>
+    </form>
+    <br>
+    {% if ingresos is not none %}
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Concepto</th>
+                <th>Importe</th>
+            </tr>
+            {% for ingreso in ingresos %}
+            <tr>
+                <td><a href="./modifica/{{ingreso['id']}}">{{ingreso['id']}}</a></td>
+                <td>{{ingreso['fecha']}}</td>
+                <td align ="center">{{ingreso['concepto']}}</td>
+                <td align ="right">{{ingreso['cantidad']}} €</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2", align ="right">Total:</td>
+                <td align ="right">{{ total }} €</td>
+            </tr>
+        </table>
+    {% else %}
+        <p>No existe ningún ingreso</p>
+    {% endif %}
+    <br/> 
+    <img src="static/easy.png" alt="easy">
+
 {%endblock%}
