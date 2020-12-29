@@ -1,7 +1,7 @@
 venv/
 __pycache__/
 .env
-movements/data
+movements/data/basededatos.db
 movements/__pycache__
 config.py
 .vscode/
